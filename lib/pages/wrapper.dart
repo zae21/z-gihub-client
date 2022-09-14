@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:github_client/pages/gihub_login.dart';
 import 'package:github_client/utilites/github_oauth_credentials.dart';
 import 'package:github/github.dart';
+import 'package:window_to_front/window_to_front.dart';
 
 class Wrapper extends StatefulWidget {
   const Wrapper({Key? key, required this.title}) : super(key: key);
@@ -17,6 +18,7 @@ class _WrapperState extends State<Wrapper> {
   Widget build(BuildContext context) {
     return GithubLoginWidget(
       builder: (context, httpClient) {
+        WindowToFront.activate();
         return FutureBuilder<CurrentUser>(
           future: viewerDetail(httpClient.credentials.accessToken),
           builder: (context, snapshot) {
